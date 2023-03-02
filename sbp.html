@@ -61,7 +61,8 @@ let currentWord ="";
 			speakBtn.addEventListener('click', () => {
 				var a= myArray.splice(0, 1);
 				currentWord = a;
-				utterance.text = '<prosody rate="slow"><emphasis level="strong">' + a + '</emphasis></prosody>';
+				//utterance.text = '<prosody rate="slow"><emphasis level="strong">' + a + '</emphasis></prosody>';
+				utterance.text = a;
 				utterance2.text = "Ready??";
 				synth.speak(utterance2); 
 				setTimeout(function() {
