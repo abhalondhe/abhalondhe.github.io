@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spelling Bee Practice</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h1>Spelling Bee Practice</h1>
+		<br>
+				<span>
+				  <input type="radio" checked id="option1" name="options" value="option1">
+				  <label for="option1">Page 1</label>
+				</span>&nbsp;&nbsp;
+				<span>
+				  <input type="radio" id="option2" name="options" value="option2">
+				  <label for="option2">Page 2</label>
+				</span>
+				<span>
+				  <input type="radio" id="option3" name="options" value="option3">
+				  <label for="option3">Page 3</label>
+				</span>
+				<span>
+				  <input type="radio" id="option4" name="options" value="option4">
+				  <label for="option4">Page 4</label>
+				</span>
+		<hr/>
+	  <label for="text-input">Press below to get next word,<br> click repeat if you need to hear it again.</label>
+<div>
+	<button class="btn btn-info" style="height:60px;width:180px;" id="speak-btn">Ask Spelling</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning" height="20px" width="70px" id="btnRpt">Repeat</button><hr/>
+	Once if you are ready to answer orally, <br>click button below and wait till I say GO!<br><br>
+	<button class="btn btn-info" style="height:60px;width:180px;" id="answer-btn">Ready to Answer Orally</button>
+	</div><br>
+	<div id="oralAns" style="border:solid 1px"></div>
+	<hr/>
+	If writing the answers on paper, validate answers in the end. <br>Click below to see words asked so far.
+	<div>
+		<button  class="btn btn-warning" id="btnShowWords" value="show">Show words asked</button><hr/><br><br>
+	<div id="words"></div>
+	<!--<textarea id="text-input" rows="4" cols="50"></textarea>-->
+	</div>
+	</div>
+    </div>
+	</div>
+
+	<!--<button id="speak2-btn">Readout</button>-->
+	<script>
+	let askedWords="";
+	let p1 = "adds,sit,cry,put,look,hey,tell,none,need,poke,drag,off,long,grass,came,make,had,trees,can,not,plan,sink,tote,hint,rice,doll,bill,pants,nets,pod,cups,page,top,trap,map,toys,ten,food,five,tiny,nose,meal,moo,share,help,like,hot,feel,ears,cute,barked,sway,harsh,porch,crops,order,stumped,blue,sorry,many,blast,shelf,chores,bottom,busy,copy,tales,stairs,white,speck,leave,pace,party,smell,moon,washing,two,trash,bobbed,some,what,few,pail,area,story,sheesh,sole,files,wiggle,baggy,phone,blame,skipped,crafty,scars,table,roots,stinky,only,bones,marry,swept,chunks,forget,rare,feedback,scared,lousy,coop,during,faith,bandmates,quiet,minute,streak,freedom,stuttered,fudge,damaged,frantic,clash,funky,tower,swoop,greasy,gravy,display,growling,visit,blessings,peacock,Ohio,elves,uplift,everyone,another,beetle,sights,choose,wonder".split(",");
+	let p2 = "belongs,model,fasting,until,nobody,color,colour,curly,heavy,build,greeting,comic,awesome,Wi-Fi,glide,spading,sifting,railings,pitch-black,jinx,hummingbird,hauling,nimble,slippery,hitched,tingle,ebb,chase,doodled,everlasting,snooty,innings,upbeat,trout,joggled,waist,landline,sparrow,whizzed,weave,slivers,spellbound,former,cottonwood,bossiness,blotch,easily,skidded,overseas,sheepish,gloomy,inkling,interesting,beginning,slouch,foster,smirk,discarded,rental,people,saints,purchase,shrivel,limbering,sockets,squinched,orca,newt,camel,spick-and-span,spic-and-span,arrows,tomorrow,distracted,balance,probably,pottery,beyond,twelve,respond,grimy,arrive,archers,slather,compute,switcheroo,donkeys,disband,constant,balm,traditional,bandage,floral,bruise,astride,actually,decide,exciting,smooshed,shawl,murals,casa,kneeling,potion,devoured,riffled,adorable,section,puttering,python,apartment,yurt,bovines,rituals,Andean,scrawled,arrested,oftentimes,embrace,ceiling,adaptable,alternate,Chicago,observations,benefited,benefitted,pistons,pangs,abodes,declaration,soldiers,cronies,peevish,dredged,Navajo,Navaho,adjusted,temperature,poppet,intertribal,Angola,contours,republic,paradise".split(",");
+let p3="vertical,equipment,debit,minerals,container,economy,wrestle,overtly,innocent,tallyho,reservation,flybys,inlet,pandemic,doorjamb,torment,evaded,instead,potential,Alberta,hematology,efficient,unacknowledged,brooding,pioneered,sedan,menacing,tiara,homeopathic,exhilaration,feisty,configuration,ruckus,dissolute,confiscated,enamel,retribution,aggravate,acrid,ballast,encompass,ordained,dais,serum,batten,ambient,geopolitics,broached,appendages,tenets,seminary,intubated,counterfeit,antidote,pomade,Manhattan,humbug,embossed,smite,provocation,crevices,maniacal,defunct,deviation,reenactment,offhandedly,churned,mutiny,apex,subsidence,effigy,vestments,Lithuania,Azores,tankard,starboard,maneuverable,lurid,blasphemous,chemotherapy,proscribed,emigrate,Zimbabwe,impudence,oncologist,inaudible,telenovelas,mullioned,benighted,philology,prophetically,cul-de-sac,pell-mell,Sanskrit,parathas,rejoinder,preternaturally,canid,forsooth,masa,Leander,pneumonia,subservient,mercenary,trey,urchins,xylem,fumatorium,deign,catastrophe,infrared,mausoleum,incontrovertible,assimilation,conjugate,commemoration,conifers,Beijing,architrave,andromeda,Spandau,estampies,Penelope,roulette,lustrum,Arcturus,hobbledehoy,eurhythmics,eurythmics,miscellaneous,sackbuts,tilapia,caparisoned,doppelganger,Piraeus,misericords,misericordes,aye-aye,trilby,Jicarilla,thurible,Vesuvian,saltarellos,chatelaine".split(",");
+let p4="cuirass,chachalacas,urad,hurdy-gurdy,Alhambra,kumkum,kirpan,Sikhism,biryani,biriani,cirrhosis,Bangalore,cirque,nom de plume,undine,marguerite,Tamil,garderobe,clerisy,nares,Andalusian,carillon,cortege,Gaels,fado,athenaeum,atheneum,Ayurvedic,chiasmus,Camelot".split(",");
+	let p =p1;
+	 let wIndex = 1;
+	 // remove the element at index 2
+	let currentWord ="";
+		// Check for browser support
+		if ('speechSynthesis' in window) {
+			const speakBtn = document.getElementById('speak-btn');
+			const ansBtn = document.getElementById('answer-btn');
+			const repeatBtn = document.getElementById('btnRpt');
+			const showBtn = document.getElementById('btnShowWords');
+			const textInput = document.getElementById('text-input');
+			const synth = window.speechSynthesis;
+			const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+			const recognition = new SpeechRecognition();
+		
+			// Create a new SpeechSynthesisUtterance object
+			const utterance = new SpeechSynthesisUtterance();
+
+			// Set default values for the utterance
+			utterance.voice = synth.getVoices()[1]; // Use the first available voice
+			utterance.rate = 0.7; // Speaking rate
+			utterance.pitch = 1.0; // Speaking pitch
+			
+			const utterance2 = new SpeechSynthesisUtterance();
+			utterance2.voice = synth.getVoices()[1]; // Use the first available voice
+			utterance2.rate = 0.7; // Speaking rate
+			utterance2.pitch = 1.0; // Speaking pitch
+			
+			ansBtn.addEventListener('click', () => {
+
+				setTimeout(function() {
+				utterance2.text = "go !";
+				synth.speak(utterance2); 
+					  //console.log("GO!");
+					}, 500); // wait for 1 second (1000 milliseconds)
+
+				recognition.start();
+				recognition.timeout = 4000; // 5 seconds
+			});
+			
+			// Event listener for the Speak button
+			speakBtn.addEventListener('click', () => {
+				var a= p.splice(0, 1);
+				currentWord = a;
+				document.getElementById('oralAns').innerHTML= "";
+				//utterance.text = '<prosody rate="slow"><emphasis level="strong">' + a + '</emphasis></prosody>';
+				utterance.text = a;
+				askedWords = askedWords +  "<tr style='border:solid 1px;text-align:left;'><td style='border:solid 1px;text-align:left;'>" + (wIndex++) + ".</td><td> " + a + "</td></tr>"  ;
+				if(showBtn.innerText==="Hide words asked")
+				{
+					document.getElementById('words').innerHTML= "<table style='width:200px; border:solid 1px;text-align:left;'><tr><td style='border:solid 1px;text-align:left;'>#</td><td>Word</td></tr>" + askedWords + "</table>";
+				}
+				utterance2.text = "ready ?";
+				synth.speak(utterance2); 
+				setTimeout(function() {
+					  //console.log("Ready?");
+					  				synth.speak(utterance); // Speak the text
+									console.log(a.toString());
+					}, 2000); // wait for 1 second (1000 milliseconds)
+				//textInput.value; // Set the text to speak
+
+				/*setTimeout(function() {
+				utterance2.text = "go !";
+				synth.speak(utterance2); 
+					  //console.log("GO!");
+					}, 3000); // wait for 1 second (1000 milliseconds)
+*/
+				//recognition.start();
+				//recognition.timeout = 5000; // 5 seconds
+			});
+			
+			showBtn.addEventListener('click', () => {
+				//alert(console.history);
+				//document.getElementById('words').innerHTML=askedWords;
+				//alert(showBtn.innerText);
+				if(showBtn.value==="show")
+				{
+					showBtn.innerText="Hide words asked";
+					document.getElementById('words').innerHTML="<table style='width:200px; border:solid 1px;text-align:left;'><tr><td style='border:solid 1px;text-align:left;'>#</td><td>Word</td></tr>" + askedWords + "</table>";;
+					showBtn.value="hide";
+				}
+				else{
+					showBtn.innerText="Show words asked";
+					document.getElementById('words').innerHTML="";
+					showBtn.value="show";
+				}
+			});
+			
+			
+			// Event listener for the Speak button
+			repeatBtn.addEventListener('click', () => {
+				utterance.text = currentWord;
+				setTimeout(function() {
+					  //console.log("Ready?");
+					  				synth.speak(utterance); // Speak the text
+					}, 1000); // wait for 1 second (1000 milliseconds)
+
+			});
+			
+			recognition.onresult = function(event) {
+					const transcript = event.results[0][0].transcript;
+					//result.innerHTML = transcript;
+					let usaid = transcript.toLowerCase().replace("capital","").replace("lower","").replace("case","").replace("small","").split(" ").join("");
+					//alert(currentWord + "  " +usaid);
+					let s1=currentWord.toString().toLowerCase();
+					document.getElementById('oralAns').innerHTML="Word was : <font color='green'>" + s1 + "</font> , you said <font color='red'>" + usaid + "</font>";
+					if(s1 === usaid)
+					{
+						utterance2.text = "CORRECT!";
+						synth.speak(utterance2);
+					}
+					else
+					{
+						utterance2.text = "INCORRECT!";
+						synth.speak(utterance2);
+					}
+					
+				};
+				
+			// Event listener for the Speak button
+			/*speakBtn.addEventListener('click', () => {
+				utterance.text = textInput.value; // Set the text to speak
+				synth.speak(utterance); // Speak the text
+			});*/
+		} else {
+			alert('Sorry, your browser does not support the Web Speech API.');
+		}
+		
+		// JavaScript code
+const radioButtons = document.querySelectorAll('input[name="options"]');
+
+radioButtons.forEach(button => {
+  button.addEventListener('click', () => {
+  console.log(button.value);
+    if(button.value==='option1')
+	{
+		p = p1;
+		console.log('page1')
+	}else if(button.value==='option2')
+	{
+		p = p2;
+		console.log('page2');
+	}
+	else if(button.value==='option3')
+	{
+		p = p1;
+		console.log('page3')
+	}
+	else if(button.value==='option4')
+	{
+		p = p1;
+		console.log('page4')
+	}
+	
+  });
+});
+		/*
+		const word = "example";
+
+		const utterance2 = new SpeechSynthesisUtterance();
+		utterance2.rate = 0.9; // adjust the speaking rate
+		utterance2.pitch = 1.5; // adjust the pitch of the voice
+		utterance2.text = `The spelling of ${word} is ${word.split("").join(" ")}`;
+
+		window.speechSynthesis.speak(utterance2);
+		*/
+	</script>
+</body>
+</html>
