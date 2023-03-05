@@ -90,13 +90,13 @@ let p4="chiasmus,Camelot".split(",");
 			utterance2.pitch = 1.0; // Speaking pitch
 			
 			ansBtn.addEventListener('click', () => {
-				utterance2.text = "go !";
-				synth.speak(utterance2); 
-				setTimeout(function() {
+				//utterance2.text = "go !";
+				//synth.speak(utterance2); 
+				//setTimeout(function() {
 				recognition.start();
 				recognition.timeout = 4000; // 5 seconds
 					  //console.log("GO!");
-					}, 500); // wait for 1 second (1000 milliseconds)
+				//	}, 500); // wait for 1 second (1000 milliseconds)
 
 				
 			});
