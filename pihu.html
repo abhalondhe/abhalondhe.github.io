@@ -39,7 +39,7 @@
 	  <label for="text-input">Press below to get next word,<br> click repeat if you need to hear it again.</label>
 <div>
 	<button class="btn btn-info" style="height:60px;width:180px;" id="speak-btn">Ask Spelling</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning" height="20px" width="70px" id="btnRpt">Repeat</button><hr/>
-	Once if you are ready to answer orally, <br>click button below and wait till I say GO!<br><br>
+	Once if you are ready to answer orally, <br>click button below and speak spelling in the mic!<br><br>
 	<button class="btn btn-info" style="height:60px;width:180px;" id="answer-btn">Ready to Answer Orally</button>
 	</div><br>
 	<div id="oralAns" style="border:solid 1px"></div>
@@ -91,12 +91,12 @@ let p4="cuirass,chachalacas,urad,hurdy-gurdy,Alhambra,kumkum,kirpan,Sikhism,biry
 			
 			ansBtn.addEventListener('click', () => {
 
-				setTimeout(function() {
+				/*setTimeout(function() {
 				utterance2.text = "go !";
 				synth.speak(utterance2); 
 					  //console.log("GO!");
 					}, 500); // wait for 1 second (1000 milliseconds)
-
+*/
 				recognition.start();
 				recognition.timeout = 4000; // 5 seconds
 			});
