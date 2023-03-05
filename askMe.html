@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap JS Sample</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h1>Spelling Bee Practice</h1>
+	  <br>
+	  <label for="text-input">Press below to get a word, wait till I say GO!:</label><hr/>
+<div>
+	<button class="btn btn-info" height="20px" width="70px" id="speak-btn">Ask Spelling</button><hr/>
+	</div>
+	<div>
+	<textarea id="text-input" rows="4" cols="50"></textarea>
+	</div>
+	</div>
+    </div>
+	</div>
+
+	<!--<button id="speak2-btn">Readout</button>-->
+	<script>
+	let para1 = "phosphorescent,anxiety,conch,singultus,impromptu,oracle,condemn,scenogrpher,neuroticism,cannoli,platoon,solstice,swannery,probative,oblique,buoyancy,situation,lumbar,topiary,reverberant,yeanling,homicide,graphologist,principality,Nostradamus,taxonomic,beret,talisman,impecunious,reciprocity,molecule,millennial,ineffable,abnegation".split(",");
+	let para2 = "Bunyanesque,exsect,champignon,bahuvrihi".split(",");
+ // remove the element at index 2
+let currentWord ="";
+		// Check for browser support
+		if ('speechSynthesis' in window) {
+			const speakBtn = document.getElementById('speak-btn');
+			const textInput = document.getElementById('text-input');
+			const synth = window.speechSynthesis;
+
+					const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+		const recognition = new SpeechRecognition();
+		
+			// Create a new SpeechSynthesisUtterance object
+			const utterance = new SpeechSynthesisUtterance();
+
+			// Set default values for the utterance
+			utterance.voice = synth.getVoices()[0]; // Use the first available voice
+			utterance.rate = .50; // Speaking rate
+			utterance.pitch = 2.0; // Speaking pitch
+			
+			const utterance2 = new SpeechSynthesisUtterance();
+			utterance.voice = synth.getVoices()[2]; // Use the first available voice
+			utterance.rate = 1.0; // Speaking rate
+			utterance.pitch = 1.0; // Speaking pitch
+			
+			// Event listener for the Speak button
+			speakBtn.addEventListener('click', () => {
+				var a= para1.splice(0, 1);
+				currentWord = a;
+				//utterance.text = '<prosody rate="slow"><emphasis level="strong">' + a + '</emphasis></prosody>';
+				utterance.text = a;
+				utterance2.text = "Ready??";
+				synth.speak(utterance2); 
+				setTimeout(function() {
+					  console.log("Ready?");
+					  				synth.speak(utterance); // Speak the text
+					}, 2000); // wait for 1 second (1000 milliseconds)
+				//textInput.value; // Set the text to speak
+
+				setTimeout(function() {
+				utterance2.text = "GO";
+				synth.speak(utterance2); 
+					  console.log("GO!");
+					}, 5000); // wait for 1 second (1000 milliseconds)
+
+				//recognition.start();
+				//recognition.timeout = 5000; // 5 seconds
+			});
+			/*
+			recognition.onresult = function(event) {
+					const transcript = event.results[0][0].transcript;
+					//result.innerHTML = transcript;
+					let usaid = transcript.toLowerCase().replace("capital","").replace("lower","").replace("case","").replace("small","").split(" ").join("");
+					//alert(currentWord + "  " +usaid);
+					let s1=currentWord.toString().toLowerCase();
+					document.getElementById('text-input').value = "Word was : " + s1 + " , you said " + usaid;
+					if(s1 === usaid)
+					{
+						utterance2.text = "CORRECT!";
+						synth.speak(utterance2);
+					}
+					else
+					{
+						utterance2.text = "INCORRECT!";
+						synth.speak(utterance2);
+					}
+					
+				};
+				*/
+			// Event listener for the Speak button
+			/*speakBtn.addEventListener('click', () => {
+				utterance.text = textInput.value; // Set the text to speak
+				synth.speak(utterance); // Speak the text
+			});*/
+		} else {
+			alert('Sorry, your browser does not support the Web Speech API.');
+		}
+		/*
+		const word = "example";
+
+		const utterance2 = new SpeechSynthesisUtterance();
+		utterance2.rate = 0.9; // adjust the speaking rate
+		utterance2.pitch = 1.5; // adjust the pitch of the voice
+		utterance2.text = `The spelling of ${word} is ${word.split("").join(" ")}`;
+
+		window.speechSynthesis.speak(utterance2);
+		*/
+	</script>
+</body>
+</html>
